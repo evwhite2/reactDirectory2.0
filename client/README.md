@@ -10,3 +10,5 @@ ReactJS
 React-Router-Dom
 Express
 Concurrently
+
+Deployed on Heroku: https://react-directory-lnv2020.herokuapp.com/
