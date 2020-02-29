@@ -9,7 +9,7 @@ function SearchForm(props){
             value={props.searchVal}
             onChange={props.handleInputChange}
             name="searchVal"
-            type ="text"
+            type ="text" 
             id="searchVal"
             />
             <select 

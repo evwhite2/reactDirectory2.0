@@ -2,38 +2,18 @@
 export default {
    
     searchID: function(value, array){
-        array.filter(emp=>{
-            if(emp.ID===value){
-                return emp;
-            }   
-        })
+        return array.filter(emp => emp.ID===value)
     },
     searchFN: function(value, array){
-        array.filter(emp=>{
-            if(emp.first_name===value){
-                return emp
-            }
-        })
+        return array.filter(emp => emp.first_name===value)
     },
     searchLN: function(value, array){
-        array.filter(emp=>{
-            if(emp.last_name===value){
-                return emp
-            }
-        })
+        return array.filter(emp => emp.last_name===value)
     },
     searchEmail: function(value, array){
-        array.filter(emp=>{
-            if(emp.email===value){
-                return emp
-            }
-        })
+        return array.filter(emp=> emp.email===value)
     },
     searchTitle: function(value, array){
-        array.filter(emp=>{
-            if(emp.Title===value){
-                console.log(emp)
-            }
-        })
+        return array.filter(emp => emp.Title===value)
     }
 };

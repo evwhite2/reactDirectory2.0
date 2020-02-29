@@ -17,35 +17,34 @@ class Search extends Component {
 
   handleInputChange = event => {
     this.setState({ searchVal: event.target.value });
-    console.log(this.state)
   };
 
   handleSearchSelector = event =>{
-    this.setState({ searchBy: event.target.value });
-    console.log(this.state)
+    this.setState({ searchBy: event.target.value }, () => console.log(this.state));
   }
 
   handleFormSubmit = event =>{
     event.preventDefault();
-    if(this.state.searchBy==="null"){
-      alert("Please made a search by selection.")
-    }else{
-      alert("serching")
-      this.state.employees.filter(emp=>{
-
-        switch(this.state.searchBy){
-          case "ID":
-              if(emp.ID===this.state.searchVal){
-                  this.setState({results: emp})}
-          break;
-          case "first_name":
-              alert("search seleciton = first name")
-        }
-      
-      }) 
+    switch (this.state.searchBy){
+      case "":
+        alert("Please made a search by selection.")
+        break;
+      case "ID":
+        this.setState({results: API.searchID(this.state.searchVal, this.state.employees)});
+        break;
+      case "first_name":
+        this.setState({results: API.searchFN(this.state.searchVal,this.state.employees)});
+        break;
+      case "last_name":
+        this.setState({results: API.searchLN(this.state.searchVal,this.state.employees)});
+        break;
+      case "email":
+        this.setState({results: API.searchEmail(this.state.searchVal,this.state.employees)});
+        break;
+      case "Title":
+        this.setState({results: API.searchTitle(this.state.searchVal,this.state.employees)});
     }
     }
-    
 
   render() {
     return (
@@ -53,8 +52,9 @@ class Search extends Component {
       <SearchForm
       handleFormSubmit={this.handleFormSubmit}
       handleInputChange={this.handleInputChange}
+      handleSearchSelector={this.handleSearchSelector}
       />
-      <Results results={this.state.results}/>
+    <Results results={this.state.results}/>
     </div>  
       )
     }
