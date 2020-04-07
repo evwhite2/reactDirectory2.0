@@ -10,7 +10,10 @@ function Results(props){
             <div>Title: {r.Title}</div>
             <div>Email: {r.email}</div>
         </li>
-)): (<li className="list-group-item">
+)
+)
+: (
+<li className="list-group-item">
 <div>ID: </div>
 <div>Name: </div> 
 <div>Title: </div>

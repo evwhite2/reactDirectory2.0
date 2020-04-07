@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import API from "../utils/API";
 import Results from "../components/Results";
 import SearchForm from "../components/SearchForm";
+import Modal from "../components/Modal/Modal";
 import employees from "../employees.json";
 
 class Search extends Component {
@@ -11,7 +12,8 @@ class Search extends Component {
     searchBy: "",
     results: "",
     error: "",
-    employees
+    employees,
+    Modal:""
   };
 
 
@@ -23,17 +25,24 @@ class Search extends Component {
     this.setState({ searchBy: event.target.value }, () => console.log(this.state));
   }
 
+  closeModal = event =>{
+    console.log("state of Modal:", this.state.Modal)
+    this.setState({Modal: ""}, ()=>{
+      console.log("closed")
+    })
+  }
+
   handleFormSubmit = event =>{
     event.preventDefault();
     switch (this.state.searchBy){
       case "":
-        alert("Please made a search by selection.")
+        this.setState({Modal: "active"}, ()=>{console.log("alert")})
         break;
       case "ID":
         this.setState({results: API.searchID(this.state.searchVal, this.state.employees)});
         break;
       case "first_name":
-        this.setState({results: API.searchFN(this.state.searchVal,this.state.employees)});
+        this.setState({results: API.searchFN(this.state.searchVal,this.state.employees)})
         break;
       case "last_name":
         this.setState({results: API.searchLN(this.state.searchVal,this.state.employees)});
@@ -43,6 +52,8 @@ class Search extends Component {
         break;
       case "Title":
         this.setState({results: API.searchTitle(this.state.searchVal,this.state.employees)});
+        default:
+          this.setState({Modal: "active"})
     }
     }
 
@@ -55,6 +66,11 @@ class Search extends Component {
       handleSearchSelector={this.handleSearchSelector}
       />
     <Results results={this.state.results}/>
+    <Modal
+    Modal= {this.state.Modal}
+    alert="Please make a search by selection."
+    closeModal= {this.closeModal}
+    />
     </div>  
       )
     }
