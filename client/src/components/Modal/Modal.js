@@ -3,8 +3,8 @@ import "./modal.css"
 
 function Modal(props){
     return(
-        <div className={`${props.Modal} modal `} tabIndex="-1" role="dialog">
-        <div className="modal-dialog" role="document">
+        <div className={`${props.Modal} ${props.noResult} modal `} tabIndex="-1" role="dialog">
+        <div className="buffTop modal-dialog" role="document">
           <div className="modal-content">
            <div className="modal-body">
               <p>{props.alert}</p>
