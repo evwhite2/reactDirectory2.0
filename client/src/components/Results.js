@@ -14,7 +14,7 @@ function Results(props){
 )
 : (
 <li className="list-group-item">
-{/* <p>Enter Search parameters to see results</p> */}
+    <p>Enter Search parameters to see results.</p>
 </li>)}    
         </ul>
     )
