@@ -5,15 +5,18 @@ import SearchForm from "../components/SearchForm";
 import Modal from "../components/Modal/Modal";
 import employees from "../employees.json";
 
+import "./style.css";
+
 class Search extends Component {
 
   state = {
     searchVal: "",
     searchBy: "",
-    results: "",
+    results: [],
     error: "",
     employees,
-    Modal:""
+    Modal:"",
+    noResult:""
   };
 
 
@@ -26,36 +29,50 @@ class Search extends Component {
   }
 
   closeModal = event =>{
-    console.log("state of Modal:", this.state.Modal)
     this.setState({Modal: ""}, ()=>{
-      console.log("closed")
+      this.setState({noResult: ""}, ()=>{
+        return;
+      })
     })
   }
 
-  handleFormSubmit = event =>{
+ handleFormSubmit = event =>{
     event.preventDefault();
+    
     switch (this.state.searchBy){
+      default:
+          this.setState({Modal: "active"})
+          break;
       case "":
         this.setState({Modal: "active"}, ()=>{console.log("alert")})
         break;
       case "ID":
-        this.setState({results: API.searchID(this.state.searchVal, this.state.employees)});
+        this.setState({results: API.searchID(this.state.searchVal, this.state.employees)}, ()=>{this.handleNone()});
         break;
       case "first_name":
-        this.setState({results: API.searchFN(this.state.searchVal,this.state.employees)})
+        this.setState({results: API.searchFN(this.state.searchVal,this.state.employees)}, ()=>{this.handleNone()})
         break;
       case "last_name":
-        this.setState({results: API.searchLN(this.state.searchVal,this.state.employees)});
+        this.setState({results: API.searchLN(this.state.searchVal,this.state.employees)}, ()=>{this.handleNone()});
         break;
       case "email":
-        this.setState({results: API.searchEmail(this.state.searchVal,this.state.employees)});
+        this.setState({results: API.searchEmail(this.state.searchVal,this.state.employees)}, ()=>{this.handleNone()});
         break;
       case "Title":
-        this.setState({results: API.searchTitle(this.state.searchVal,this.state.employees)});
-        default:
-          this.setState({Modal: "active"})
+        this.setState({results: API.searchTitle(this.state.searchVal,this.state.employees)}, ()=>{this.handleNone()});
     }
+    
+  }
+
+    handleNone = () =>{
+      if(this.state.results.length > 0){
+          return;
+      }else{
+        this.setState({noResult: "active"}, ()=>{
+          return;
+      })
     }
+  }
 
   render() {
     return (
@@ -64,11 +81,17 @@ class Search extends Component {
       handleFormSubmit={this.handleFormSubmit}
       handleInputChange={this.handleInputChange}
       handleSearchSelector={this.handleSearchSelector}
+      resultForm={this.state.resultForm}
       />
     <Results results={this.state.results}/>
     <Modal
     Modal= {this.state.Modal}
     alert="Please make a search by selection."
+    closeModal= {this.closeModal}
+    />
+    <Modal
+    noResult= {this.state.noResult}
+    alert="No results found for your search."
     closeModal= {this.closeModal}
     />
     </div>  
