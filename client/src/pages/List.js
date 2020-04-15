@@ -13,8 +13,8 @@ class List extends Component {
   render() {
   return (
     <Container>
-
-      <h1>Employee Directory</h1>
+    <br/>
+      <h1 className="logo">Employee Directory</h1>
       <table className="table">
 
         <TableHead/>

@@ -11,6 +11,7 @@ var imgStyle={
 function Home(){
   return (
     <Wrapper>
+      
       <h1 className="logo">Employee Directory 2.0</h1>
       
       <img alt="by AbsolutVision on Unsplash" style={imgStyle} src={compass}/>

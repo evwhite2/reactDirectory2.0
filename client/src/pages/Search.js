@@ -79,7 +79,7 @@ class Search extends Component {
   render() {
     return (
       <Container>
-
+        <br/>
         <SearchForm
         handleFormSubmit={this.handleFormSubmit}
         handleInputChange={this.handleInputChange}
