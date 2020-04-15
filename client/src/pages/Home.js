@@ -1,39 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 
-import employees from  "../employees.json";
 import Wrapper from "../components/Wrapper"
-import Row from "../components/Row";
-import TableHead from "../components/TableHead";
+import compass from "../images/CompassImg.jpg";
 
-class Home extends Component {
-  state = {
-    employees
-  };
+var imgStyle={
+  maxHeight: "820px",
+  maxWidth:"1200px"
+}
 
-  render() {
+function Home(){
   return (
     <Wrapper>
-
-      <h1>Employee Directory</h1>
-      <table className="table">
-
-        <TableHead/>
-        {this.state.employees.map(employee=>(
-          <Row 
-          key={employee.ID}
-          ID= {employee.ID}
-          first_name={employee.first_name}
-          last_name={employee.last_name}
-          email={employee.email}
-          title= {employee.Title}
-          />
-        ))}
-
-      </table>
-        
+      <h1 className="logo">Employee Directory 2.0</h1>
+      
+      <img alt="by AbsolutVision on Unsplash" style={imgStyle} src={compass}/>
+     
+      <span className="caption">Photo by AbsolutVision on Unsplash</span>
     </Wrapper>
   );
-}
 
 }
 

@@ -12,6 +12,11 @@ function NavBar(){
            </li>
            <li className="nav-item">
                <Link className= "nav-link"
+               to="/list"
+               >List</Link>
+           </li>    
+           <li className="nav-item">
+               <Link className= "nav-link"
                to="/search"
                >Search</Link>
            </li>         

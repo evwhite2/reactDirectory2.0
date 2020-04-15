@@ -3,6 +3,7 @@ import API from "../utils/API";
 import Results from "../components/Results";
 import SearchForm from "../components/SearchForm";
 import Modal from "../components/Modal/Modal";
+import Container from "../components/Container";
 import employees from "../employees.json";
 
 import "./style.css";
@@ -21,18 +22,19 @@ class Search extends Component {
 
 
   handleInputChange = event => {
+    var userInput = event.target.value;
+    userInput.toLowerCase();
+    console.log("user input", userInput);
     this.setState({ searchVal: event.target.value });
   };
 
   handleSearchSelector = event =>{
-    this.setState({ searchBy: event.target.value }, () => console.log(this.state));
+    this.setState({ searchBy: event.target.value }, () => {return});
   }
 
   closeModal = event =>{
     this.setState({Modal: ""}, ()=>{
-      this.setState({noResult: ""}, ()=>{
-        return;
-      })
+      this.setState({noResult: ""}, ()=>{return})
     })
   }
 
@@ -76,25 +78,30 @@ class Search extends Component {
 
   render() {
     return (
-    <div>
-      <SearchForm
-      handleFormSubmit={this.handleFormSubmit}
-      handleInputChange={this.handleInputChange}
-      handleSearchSelector={this.handleSearchSelector}
-      resultForm={this.state.resultForm}
-      />
-    <Results results={this.state.results}/>
-    <Modal
-    Modal= {this.state.Modal}
-    alert="Please make a search by selection."
-    closeModal= {this.closeModal}
-    />
-    <Modal
-    noResult= {this.state.noResult}
-    alert="No results found for your search."
-    closeModal= {this.closeModal}
-    />
-    </div>  
+      <Container>
+
+        <SearchForm
+        handleFormSubmit={this.handleFormSubmit}
+        handleInputChange={this.handleInputChange}
+        handleSearchSelector={this.handleSearchSelector}
+        resultForm={this.state.resultForm}
+        />
+
+        <Results results={this.state.results}/>
+
+        {/* Modals */}
+        <Modal
+        Modal= {this.state.Modal}
+        alert="Please make a search by selection."
+        closeModal= {this.closeModal}
+        />
+        <Modal
+        noResult= {this.state.noResult}
+        alert="No results found for your search."
+        closeModal= {this.closeModal}
+        />
+
+    </Container>
       )
     }
 }

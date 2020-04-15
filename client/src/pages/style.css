@@ -1,3 +1,9 @@
 .none{
     display: none;
 }
+.caption{
+    font-size: 9px;
+}
+.logo{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
