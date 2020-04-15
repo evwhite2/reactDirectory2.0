@@ -86,7 +86,7 @@ class Search extends Component {
         handleSearchSelector={this.handleSearchSelector}
         resultForm={this.state.resultForm}
         />
-
+        <br/> <br/>
         <Results results={this.state.results}/>
 
         {/* Modals */}
